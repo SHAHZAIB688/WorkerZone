@@ -1,68 +1,74 @@
-import React from 'react'
+import React from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
 import { FaArrowCircleUp } from "react-icons/fa";
 
 import { FaInstagram } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className='flex flex-col w-full bg-zinc-200'>
-      <div className='border-t flex justify-center  border-zinc-400 h-70'>
-        <div className='flex flex-row gap-12'>
-            <div className='flex flex-col gap-3 p-10 '>
-                <h1 className='font-bold'>Popular Categories</h1>
-                <div className='flex flex-col gap-1'>
-                <a href="">Electrician</a>
-                <a href="">Plumber</a>
-                <a href="">Welder</a>
-                <a href="">Chef</a>
-                </div>
-            </div>
-            <div className='flex flex-col gap-3 p-10 '>
-                <h1 className='font-bold'>Trending Searches</h1>
-                <div className='flex flex-col gap-1'>
-                <a href="">Chef</a>
-                <a href="">Plumber</a>
-                <a href="">Electrician</a>
-                <a href="">Welder</a>
-                </div>
-            </div>
-            <div className='flex flex-col gap-3 p-10 '>
-                <h1 className='font-bold'>About Us</h1>
-                <div className='flex flex-col gap-1'>
-                <a href="">Contact Us</a>
-                <a href="">Blog</a>
-                <a href="">Careers</a>
-                </div>
-            </div>
-            <div className='flex flex-col gap-3 p-10 '>
-                <h1 className='font-bold'>Worker Zone</h1>
-                <div className='flex flex-col gap-1'>
-                <a href="">Privacy Policy</a>
-                <a href="">Help</a>
-                <a href="">Terms of Use</a>
-                </div>
-            </div>
-            <div className='flex flex-col gap-5 p-10 '>
-                <h1 className='font-bold'>Follow Us</h1>
-                <div className='flex flex-row gap-3'>
-                <FaFacebook size={30} className='hover:cursor-pointer'/>
-                <FaXTwitter size={30} className='hover:cursor-pointer'/>
-                <IoLogoYoutube size={30} className='hover:cursor-pointer'/>
-                <FaInstagram size={30} className='hover:cursor-pointer'/>
-                </div>
-                <div className='mt-10 flex cursor-pointer justify-end'>
-                    <FaArrowCircleUp href='' size={30}/>
-                </div>
-            </div>
+    <footer className="border-t border-slate-200 bg-white">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="lg:col-span-2">
+          <div className="flex items-center gap-2 font-extrabold text-slate-900">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-blue-600 text-white">WZ</span>
+            WorkerZone
+          </div>
+          <p className="mt-3 max-w-md text-sm text-slate-600">
+            A simple platform to discover local workers and hire with confidence. Built with React + Tailwind.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          <p className="text-sm font-extrabold text-slate-900">Popular</p>
+          <div className="space-y-2 text-sm text-slate-600">
+            <Link className="block hover:text-slate-900" to="/electrician">Electrician</Link>
+            <Link className="block hover:text-slate-900" to="/plumber">Plumber</Link>
+            <Link className="block hover:text-slate-900" to="/welder">Welder</Link>
+            <Link className="block hover:text-slate-900" to="/cook">Cook</Link>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <p className="text-sm font-extrabold text-slate-900">Company</p>
+          <div className="space-y-2 text-sm text-slate-600">
+            <Link className="block hover:text-slate-900" to="/contact">Contact</Link>
+            <Link className="block hover:text-slate-900" to="/about">About</Link>
+            <Link className="block hover:text-slate-900" to="/careers">Careers</Link>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <p className="text-sm font-extrabold text-slate-900">Follow</p>
+          <div className="flex items-center gap-3 text-slate-700">
+            <FaFacebook size={26} className="cursor-pointer hover:text-slate-900" />
+            <FaXTwitter size={26} className="cursor-pointer hover:text-slate-900" />
+            <IoLogoYoutube size={26} className="cursor-pointer hover:text-slate-900" />
+            <FaInstagram size={26} className="cursor-pointer hover:text-slate-900" />
+          </div>
+          <button
+            className="mt-3 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <FaArrowCircleUp />
+            Back to top
+          </button>
         </div>
       </div>
-      <div className='text-md text-center items-center flex justify-center h-10 bg-blue-600'>
-              © {new Date().getFullYear()} Worker Zone. All Rights Reserved.
+
+      <div className="border-t border-slate-200 bg-slate-50">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
+          <span>© {new Date().getFullYear()} WorkerZone. All Rights Reserved.</span>
+          <div className="flex gap-4">
+            <Link className="hover:text-slate-900" to="/privacy">Privacy</Link>
+            <Link className="hover:text-slate-900" to="/terms">Terms</Link>
+            <Link className="hover:text-slate-900" to="/help">Help</Link>
+          </div>
+        </div>
       </div>
-    </div>
+    </footer>
   )
 }
 

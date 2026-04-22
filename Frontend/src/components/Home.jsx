@@ -1,62 +1,54 @@
-import React from 'react'
-import electricianImg from '../assets/electrician.png'
-import plumber from '../assets/plumber.jpg'
-import painter from '../assets/painter.jpg'
-import carpainter from '../assets/carpainter.jpg'
-import mason from '../assets/mason.jpg'
-import welder from '../assets/welder.jpg'
-import roofer from '../assets/roofer.jpg'
-import housekeeper from '../assets/housekeeper.jpg'
-import cook from '../assets/cook.jpg'
-import computertech from '../assets/ComputerTechnician.jpg'
-import security from '../assets/SecuritySystemInstaller.jpg'
-import loader from '../assets/loader.jpg'
-import gardener from '../assets/gardner.jpg'
-import guard from '../assets/guard.jpg'
+import React from "react";
 import Categories from './Categories'
 import Cards from './Cards'
+import AppShell from "./layout/AppShell.jsx";
+import { Link } from "react-router-dom";
+import { CATEGORIES } from "../data/workers.js";
 
 const Home = () => {
-  const categories = [
-    { name: "Electrician", img: electricianImg, link: "/electrician" },
-    { name: "Plumber", img: plumber, link: "/plumber" },
-    { name: "Painter", img: painter, link: "/painter" },
-    { name: "Carpenter", img: carpainter, link: "/carpenter" },
-    { name: "Mason", img: mason, link: "/mason" },
-    { name: "Welder", img: welder, link: "/welder" },
-    { name: "Roofer", img: roofer, link: "/roofer" },
-    { name: "Housekeeper", img: housekeeper, link: "/housekeeper" },
-    { name: "Cook", img: cook, link: "/cook" },
-    { name: "Computer Technician", img: computertech, link: "/computer-tech" },
-    { name: "Security System Installer", img: security, link: "/security-installer" },
-    { name: "Loader", img: loader, link: "/loader" },
-    { name: "Gardener", img: gardener, link: "/gardener" },
-    { name: "Security Guard", img: guard, link: "/security-guard" },
-  ]
+  const categories = CATEGORIES.map((c) => ({
+    name: c.name,
+    img: c.image,
+    link: `/workers?category=${encodeURIComponent(c.id)}`,
+  }));
 
   return (
-    <>
-      <Categories />
-      <div className='flex  flex-wrap gap-5 m-5  justify-start px-5 '>
-        {categories.map((item, index) => (
-          <a
-            key={index}
-            href={item.link}
-            className='w-40 flex flex-col items-center'
-          >
-            {/* Image as background */}
-            <div
-              className='w-30 h-30 rounded-md bg-cover bg-center shadow-md hover:scale-105 transition-transform'
-              style={{ backgroundImage: `url(${item.img})` }}
-            ></div>
+    <AppShell>
+      <section className="bg-gradient-to-b from-blue-50 to-slate-50">
+        <div className="mx-auto max-w-6xl px-4 py-10">
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Find trusted workers near you</h1>
+          <p className="mt-2 max-w-2xl text-slate-600">
+            Browse categories, compare listings, and hire with confidence. Fast, simple, and built for local services.
+          </p>
+        </div>
+      </section>
 
-            {/* Name below the image */}
-            <span className='mt-2 font-medium text-gray-800 text-center'>{item.name}</span>
-          </a>
-        ))}
-        <Cards />
+      <div className="mx-auto max-w-6xl px-4 py-6">
+        <Categories />
       </div>
-    </>
+
+      <div className="mx-auto max-w-6xl px-4 pb-10">
+        <h2 className="text-lg font-extrabold text-slate-900">Popular categories</h2>
+        <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+          {categories.map((item, index) => (
+            <Link key={index} to={item.link} className="group rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+              <div className="aspect-square w-full rounded-xl bg-slate-100 bg-cover bg-center" style={{ backgroundImage: `url(${item.img})` }} />
+              <div className="mt-2 text-sm font-semibold text-slate-900 group-hover:text-blue-700">{item.name}</div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-10">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-extrabold text-slate-900">Trending listings</h2>
+            <Link to="/explore" className="text-sm font-semibold text-blue-600 hover:underline">
+              View all
+            </Link>
+          </div>
+          <Cards />
+        </div>
+      </div>
+    </AppShell>
   )
 }
 

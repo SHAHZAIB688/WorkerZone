@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+/* App-level defaults (Tailwind v4, no config required) */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: #f8fafc;
+  color: #0f172a;
+}
